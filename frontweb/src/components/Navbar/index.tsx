@@ -1,10 +1,10 @@
-
+import './styles.css';
 
 const Navbar = () => {
     return (
-        <nav className="bg-primary">
+        <nav className="navbar bg-primary navbar-config">
             <div>
-                <a href="link">
+                <a href="link" className="nav-logo-text">
                     <h4>MovieFlix</h4>
                 </a>
             </div>
