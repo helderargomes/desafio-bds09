@@ -2,13 +2,13 @@
 import './App.css';
 
 import Navbar from 'components/Navbar';
-import Movies from 'pages/Movies';
+import MovieComments from 'pages/MovieComments';
 
 function App() {
   return (
     <>
     <Navbar />    
-    <Movies />
+    <MovieComments />
     </>
     
   );

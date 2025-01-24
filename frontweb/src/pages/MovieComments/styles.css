@@ -1,0 +1,31 @@
+
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 17px 10px;
+}
+
+.home-container h1 {
+    font-size: 24px;
+    letter-spacing: -0.015;
+}
+
+.comment-form-card {
+    margin: 18px 0px;
+}
+
+@Media (min-width: 1200px) {
+    .home-container {
+        padding: 40px;
+    }
+
+    .home-container h1 {
+        font-size: 48px;
+    }
+
+    .comment-form-card {
+        margin: 29px 0px;
+    }
+}
