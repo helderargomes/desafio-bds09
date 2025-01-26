@@ -1,5 +1,4 @@
 
-
 .home-container {
     display: flex;
     flex-direction: column;
@@ -16,6 +15,10 @@
     margin: 18px 0px;
 }
 
+.review-list-container {
+    padding: 17px 10px 14px 10px;
+}
+
 @Media (min-width: 1200px) {
     .home-container {
         padding: 40px;
@@ -27,5 +30,9 @@
 
     .comment-form-card {
         margin: 29px 0px;
+    }
+
+    .review-list-container {
+        padding: 10px 20px 13px 17px;
     }
 }

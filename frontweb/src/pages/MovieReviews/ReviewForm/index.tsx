@@ -1,6 +1,6 @@
 import "./styles.css";
 
-const CommentForm = () => {
+const ReviewForm = () => {
   return (
     <div className="base-card comment-card">
       <form>
@@ -20,4 +20,4 @@ const CommentForm = () => {
   );
 };
 
-export default CommentForm;
+export default ReviewForm;
