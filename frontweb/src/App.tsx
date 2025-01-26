@@ -1,16 +1,10 @@
+import "./App.css";
 
-import './App.css';
-
-import Navbar from 'components/Navbar';
-import MovieComments from 'pages/MovieComments';
+import Routes from "Routes";
 
 function App() {
   return (
-    <>
-    <Navbar />    
-    <MovieComments />
-    </>
-    
+  <Routes />
   );
 }
 
