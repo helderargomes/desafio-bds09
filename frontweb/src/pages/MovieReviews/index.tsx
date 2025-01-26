@@ -16,7 +16,7 @@ const review: MovieReview = {
 
 const MovieReviews = () => {
   return (
-    <div className="home-container">
+    <div className="home-review-container home-base-container">
       <h1>Tela de detalhes do filme id: 1</h1>
       <div className="comment-form-card">
         <ReviewForm />
