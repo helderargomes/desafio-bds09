@@ -3,10 +3,10 @@ import "./styles.css";
 import ReviewIcon from "assets/images/comment-icon.png";
 
 type Props = {
-  review : MovieReview;
-}
+  review: MovieReview;
+};
 
-const Review = ({review} : Props) => {
+const Review = ({ review }: Props) => {
   return (
     <div>
       <div className="review-header">

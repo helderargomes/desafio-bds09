@@ -3,6 +3,7 @@ import Review from "./Review";
 import "./styles.css";
 import { MovieReview } from "types/movieReview";
 
+
 const review: MovieReview = {
   id: 1,
   text: "Meh, filme OK",
@@ -15,6 +16,7 @@ const review: MovieReview = {
 };
 
 const MovieReviews = () => {
+ 
   return (
     <div className="home-review-container home-base-container">
       <h1>Tela de detalhes do filme id: 1</h1>
