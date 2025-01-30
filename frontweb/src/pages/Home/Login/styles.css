@@ -15,6 +15,11 @@
     line-height: 50px;
 }
 
+
+.alert, .invalid-feedback {
+    font-size: 16px;
+}
+
 .login-card form {
     width: 100%;
 }
@@ -61,5 +66,13 @@
         width: 480px;
         padding: 40px 70px;
         height: 100%;
+    }
+
+    .alert {
+        font-size: 15px;
+    }
+
+    .invalid-feedback {
+        font-size: 0.4em;
     }
 }
