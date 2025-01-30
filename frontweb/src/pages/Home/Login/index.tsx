@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import "./styles.css";
 import { requestBackendLogin } from "utils/requests";
 import { useState } from "react";
+import { getAuthData, saveAuthData } from "utils/storage";
 
 type FormData = {
   username: string;
@@ -16,6 +17,9 @@ const Login = () => {
   const onSubmit = (formData: FormData) => {
     requestBackendLogin(formData)
       .then((response) => {
+        saveAuthData(response.data);
+        const token = getAuthData().access_token;
+        console.log('TOKEN GERADO: ' + token);
         console.log("SUCESSO", response);
       })
       .catch((error) => {
