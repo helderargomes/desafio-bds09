@@ -5,14 +5,21 @@ import { MovieReview } from "types/movieReview";
 import { useEffect, useState } from "react";
 import { AxiosRequestConfig } from "axios";
 import { BASE_URL, requestBackend } from "utils/requests";
+import { useParams } from "react-router-dom";
+
+type UrlParams = {
+  movieId: string;
+}
 
 const MovieReviews = () => {
   const [review, setReview] = useState<MovieReview[]>();
 
+  const {movieId} = useParams<UrlParams>();
+
   useEffect(() => {
     const params: AxiosRequestConfig = {
       method: "GET",
-      url: `${BASE_URL}/movies/2/reviews`,
+      url: `${BASE_URL}/movies/${movieId}/reviews`,
       withCredentials: true,
     };
 
