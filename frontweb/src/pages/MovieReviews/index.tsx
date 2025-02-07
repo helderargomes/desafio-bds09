@@ -26,7 +26,7 @@ const MovieReviews = () => {
     requestBackend(params).then((response) => {
       setReview(response.data);
     });
-  }, []);
+  }, [movieId]);
 
   return (
     <div className="home-review-container home-base-container">

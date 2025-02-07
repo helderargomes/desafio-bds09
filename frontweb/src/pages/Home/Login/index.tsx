@@ -3,6 +3,7 @@ import "./styles.css";
 import { requestBackendLogin } from "utils/requests";
 import { useState } from "react";
 import { getAuthData, saveAuthData } from "utils/storage";
+import { useHistory } from "react-router-dom";
 
 type FormData = {
   username: string;
@@ -10,6 +11,9 @@ type FormData = {
 };
 
 const Login = () => {
+
+  const history = useHistory();
+
   const { register, handleSubmit, formState:{errors} } = useForm<FormData>();
 
   const [hasError, setHasError] = useState(false);
@@ -21,6 +25,7 @@ const Login = () => {
         const token = getAuthData().access_token;
         console.log('TOKEN GERADO: ' + token);
         console.log("SUCESSO", response);
+        history.push('/movies');
       })
       .catch((error) => {
         setHasError(true);
