@@ -1,4 +1,5 @@
 import Navbar from "components/Navbar";
+import PrivateRoute from "components/Navbar/PrivateRoute";
 import Home from "pages/Home";
 import MovieReviews from "pages/MovieReviews";
 import Movies from "pages/Movies";
@@ -12,9 +13,9 @@ const Routes = () => (
       <Route path="/" exact>
         <Home />
       </Route>
-      <Route path="/movies" exact>
+      <PrivateRoute path="/movies" exact>
         <Movies />
-      </Route>
+      </PrivateRoute>
       <Route path="/movies/:movieId">
         <MovieReviews />
       </Route>
