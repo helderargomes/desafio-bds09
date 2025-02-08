@@ -25,6 +25,11 @@ a, a:hover {
     font-size: 14px;
 }
 
+.navbar-config button a {
+    font-weight: 700;
+    font-size: 14px;
+}
+
 @media (min-width: 576px) {
     .navbar-config {
         padding: 18px 25px;

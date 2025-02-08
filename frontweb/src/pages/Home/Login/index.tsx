@@ -1,9 +1,11 @@
 import { useForm } from "react-hook-form";
 import "./styles.css";
 import { requestBackendLogin } from "utils/requests";
-import { useState } from "react";
-import { getAuthData, saveAuthData } from "utils/storage";
+import { useContext, useState } from "react";
+import { saveAuthData } from "utils/storage";
 import { useHistory } from "react-router-dom";
+import { AuthContext } from "AuthContext";
+import { getTokenData } from "utils/auth";
 
 type FormData = {
   username: string;
@@ -11,6 +13,8 @@ type FormData = {
 };
 
 const Login = () => {
+
+  const { setAuthContextData } = useContext(AuthContext);
 
   const history = useHistory();
 
@@ -22,9 +26,10 @@ const Login = () => {
     requestBackendLogin(formData)
       .then((response) => {
         saveAuthData(response.data);
-        const token = getAuthData().access_token;
-        console.log('TOKEN GERADO: ' + token);
-        console.log("SUCESSO", response);
+        setAuthContextData({
+          authenticated: true,
+          tokenData: getTokenData(),
+        });
         history.push('/movies');
       })
       .catch((error) => {
