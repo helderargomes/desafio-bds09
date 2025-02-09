@@ -4,7 +4,7 @@ import { requestBackendLogin } from "utils/requests";
 import { useContext, useState } from "react";
 import { saveAuthData } from "utils/storage";
 import { useHistory } from "react-router-dom";
-import { AuthContext } from "AuthContext";
+import { AuthContext } from "Auth";
 import { getTokenData } from "utils/auth";
 
 type FormData = {
@@ -12,13 +12,18 @@ type FormData = {
   password: string;
 };
 
+
 const Login = () => {
 
   const { setAuthContextData } = useContext(AuthContext);
 
   const history = useHistory();
 
-  const { register, handleSubmit, formState:{errors} } = useForm<FormData>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
 
   const [hasError, setHasError] = useState(false);
 
@@ -26,15 +31,16 @@ const Login = () => {
     requestBackendLogin(formData)
       .then((response) => {
         saveAuthData(response.data);
+        setHasError(false);
         setAuthContextData({
           authenticated: true,
           tokenData: getTokenData(),
-        });
-        history.push('/movies');
+        })
+        history.push("/movies");
       })
       .catch((error) => {
         setHasError(true);
-        console.log("ERRO", error);        
+        console.log("ERRO", error);
       });
   };
 
@@ -52,30 +58,38 @@ const Login = () => {
           <div className="mb-4">
             <input
               {...register("username", {
-                required: "Campo obrigatório", 
+                required: "Campo obrigatório",
                 pattern: {
-                  value:  /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: "Email inválido"
-                }
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: "Email inválido",
+                },
               })}
               type="text"
-              className={`form-control base-input ${errors.username ? 'is-invalid' : ''}`}
+              className={`form-control base-input ${
+                errors.username ? "is-invalid" : ""
+              }`}
               placeholder="Email"
               name="username"
             />
-            <div className="invalid-feedback d-block">{errors.username?.message}</div>
+            <div className="invalid-feedback d-block">
+              {errors.username?.message}
+            </div>
           </div>
           <div className="mb-2">
             <input
               {...register("password", {
-                required: "Campo obrigatório"
+                required: "Campo obrigatório",
               })}
               type="password"
-              className={`form-control base-input ${errors.password ? 'is-invalid' : ''}`}
+              className={`form-control base-input ${
+                errors.password ? "is-invalid" : ""
+              }`}
               placeholder="Senha"
               name="password"
             />
-            <div className="invalid-feedback d-block">{errors.password?.message}</div>
+            <div className="invalid-feedback d-block">
+              {errors.password?.message}
+            </div>
           </div>
           <div className="login-submit">
             <button className="bg-primary btn">FAZER LOGIN</button>

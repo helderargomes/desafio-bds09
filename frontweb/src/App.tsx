@@ -2,16 +2,18 @@ import { useState } from "react";
 import "./App.css";
 
 import Routes from "Routes";
-import { AuthContext, AuthContextData } from "AuthContext";
+import { AuthContext, AuthContextData } from "Auth";
 
 function App() {
+
   const [authContextData, setAuthContextData] = useState<AuthContextData>({
     authenticated: false,
   });
+
   return (
-    <AuthContext.Provider value={{ authContextData, setAuthContextData }}>
-      <Routes />
-    </AuthContext.Provider>
+  <AuthContext.Provider value={{authContextData, setAuthContextData}}>
+    <Routes />
+  </AuthContext.Provider>
   );
 }
 

@@ -4,7 +4,7 @@ import { getTokenData, isAuthenticated } from "utils/auth";
 import { useContext, useEffect } from "react";
 import history from "utils/history";
 import { removeAuthData } from "utils/storage";
-import { AuthContext } from "AuthContext";
+import { AuthContext } from "Auth";
 
 const Navbar = () => {
   const { authContextData, setAuthContextData } = useContext(AuthContext);
@@ -40,7 +40,7 @@ const Navbar = () => {
       </div>
 
       <div>
-        {authContextData.authenticated && (
+        {authContextData?.authenticated && (
           <button>
             <a href="#logout" onClick={handleClick}>
               SAIR
