@@ -13,7 +13,7 @@ type UrlParams = {
 };
 
 const MovieReviews = () => {
-  const [review, setReview] = useState<MovieReview[]>();
+  const [reviews, setReviews] = useState<MovieReview[]>([]);
 
   const { movieId } = useParams<UrlParams>();
 
@@ -25,22 +25,31 @@ const MovieReviews = () => {
     };
 
     requestBackend(params).then((response) => {
-      setReview(response.data);
+      setReviews(response.data);
     });
   }, [movieId]);
+
+  const handleInsertReview = (movieReview: MovieReview) => {
+    const clone = [...reviews];
+    clone.push(movieReview);
+    setReviews(clone);
+  };
 
   return (
     <div className="home-review-container home-base-container">
       <h1>Tela de detalhes do filme id: {movieId}</h1>
       {hasAnyRoles(["ROLE_MEMBER"]) && (
         <div className="comment-form-card">
-          <ReviewForm currentMovieId={movieId} />
+          <ReviewForm
+            currentMovieId={movieId}
+            onInsertReview={handleInsertReview}
+          />
         </div>
       )}
 
       <div className="review-list-container base-card">
         <ul className="list-unstyled">
-          {review?.map((movieReview) => (
+          {reviews?.map((movieReview) => (
             <li key={movieReview.id}>
               <Review review={movieReview} />
             </li>

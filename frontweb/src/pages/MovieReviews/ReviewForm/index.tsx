@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import "./styles.css";
 import { postReviewBackend } from "utils/requests";
 import { useState } from "react";
+import { MovieReview } from "types/movieReview";
 
 type ReviewData = {
   text: string;
@@ -9,9 +10,10 @@ type ReviewData = {
 
 type Props = {
   currentMovieId: string;
+  onInsertReview: (review: MovieReview) => void;
 }
 
-const ReviewForm = ({currentMovieId} : Props) => {
+const ReviewForm = ({currentMovieId, onInsertReview} : Props) => {
   
   const [reviewData, setReviewData] = useState<ReviewData>();
   
@@ -19,11 +21,14 @@ const ReviewForm = ({currentMovieId} : Props) => {
     register,
     handleSubmit,
     formState: { errors },
+    setValue
   } = useForm<ReviewData>();
 
   const onSubmit = (reviewData: ReviewData) => {    
     setReviewData(reviewData);
     postReviewBackend(reviewData, currentMovieId).then(response => {
+      setValue("text", "");
+      onInsertReview(response.data);
       console.log("SUCESSO AO SALVAR", response);
     })
     .catch(error => {
