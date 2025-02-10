@@ -7,18 +7,20 @@ import { Router, Route, Switch } from "react-router-dom";
 import history from "utils/history";
 
 const Routes = () => (
-  <Router history={ history}>
+  <Router history={history}>
     <Navbar />
     <Switch>
       <Route path="/" exact>
         <Home />
       </Route>
-      <PrivateRoute path="/movies" exact>
-        <Movies />
+      <PrivateRoute path="/movies">
+        <Route path="/movies" exact>
+          <Movies />
+        </Route>
+        <Route path="/movies/:movieId">
+          <MovieReviews />
+        </Route>
       </PrivateRoute>
-      <Route path="/movies/:movieId">
-        <MovieReviews />
-      </Route>
     </Switch>
   </Router>
 );

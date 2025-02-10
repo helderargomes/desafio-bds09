@@ -23,7 +23,12 @@ const ReviewForm = ({currentMovieId} : Props) => {
 
   const onSubmit = (reviewData: ReviewData) => {    
     setReviewData(reviewData);
-    postReviewBackend(reviewData, currentMovieId);
+    postReviewBackend(reviewData, currentMovieId).then(response => {
+      console.log("SUCESSO AO SALVAR", response);
+    })
+    .catch(error => {
+      console.log("ERRO AO SALVAR", error);
+    });
     };
 
   return (

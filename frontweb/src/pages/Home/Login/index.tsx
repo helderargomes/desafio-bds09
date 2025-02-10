@@ -4,7 +4,7 @@ import { requestBackendLogin } from "utils/requests";
 import { useContext, useState } from "react";
 import { saveAuthData } from "utils/storage";
 import { useHistory } from "react-router-dom";
-import { AuthContext } from "Auth";
+import { AuthContext } from "AuthContext";
 import { getTokenData } from "utils/auth";
 
 type FormData = {

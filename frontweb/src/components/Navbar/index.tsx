@@ -4,7 +4,7 @@ import { getTokenData, isAuthenticated } from "utils/auth";
 import { useContext, useEffect } from "react";
 import history from "utils/history";
 import { removeAuthData } from "utils/storage";
-import { AuthContext } from "Auth";
+import { AuthContext } from "AuthContext";
 
 const Navbar = () => {
   const { authContextData, setAuthContextData } = useContext(AuthContext);

@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./App.css";
 
 import Routes from "Routes";
-import { AuthContext, AuthContextData } from "Auth";
+import { AuthContext, AuthContextData } from "AuthContext";
 
 function App() {
 
