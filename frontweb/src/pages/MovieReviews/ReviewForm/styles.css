@@ -6,6 +6,10 @@
   height: 50px;
 }
 
+.invalid-feedback {
+  font-size: 16px;
+}
+
 .comment-submit {
   display: flex;
   flex-direction: column;
