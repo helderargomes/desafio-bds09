@@ -1,39 +1,48 @@
 import { useForm } from "react-hook-form";
 import "./styles.css";
+import { postReviewBackend } from "utils/requests";
+import { useState } from "react";
 
 type ReviewData = {
-  review: string;
+  text: string;
+};
+
+type Props = {
+  currentMovieId: string;
 }
 
-const ReviewForm = () => {
+const ReviewForm = ({currentMovieId} : Props) => {
   
-  const {register, handleSubmit, formState: { errors } } = useForm<ReviewData>();
+  const [reviewData, setReviewData] = useState<ReviewData>();
+  
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ReviewData>();
 
-  const onSubmit = (reviewData: ReviewData) => {
-    console.log(reviewData);
-  }
+  const onSubmit = (reviewData: ReviewData) => {    
+    setReviewData(reviewData);
+    postReviewBackend(reviewData, currentMovieId);
+    };
 
   return (
-
-
     <div className="base-card comment-card">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-3">
           <input
-          {...register("review", {
-            required: 'Campo obrigatório'
-          })}
+            {...register("text", {
+              required: "Campo obrigatório",
+            })}
             type="text"
             className={`form-control base-input ${
-              errors.review ? "is-invalid" : ""
+              errors.text ? "is-invalid" : ""
             }`}
             placeholder="Deixe sua avaliação aqui"
-            name="review"
+            name="text"
           />
         </div>
-        <div className="invalid-feedback d-block">
-            {errors.review?.message}
-        </div>
+        <div className="invalid-feedback d-block">{errors.text?.message}</div>
         <div className="comment-submit">
           <button className="bg-primary btn">Salvar Avaliação</button>
         </div>

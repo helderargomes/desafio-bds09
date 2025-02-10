@@ -14,6 +14,10 @@ type LoginData = {
   password: string;
 };
 
+type Review = {
+  text: string;
+}
+
 export const requestBackendLogin = (loginData: LoginData) => {
   const headers = {
     "Content-type": "application/x-www-form-urlencoded",
@@ -44,6 +48,23 @@ export const requestBackend = (config: AxiosRequestConfig) => {
 
   return axios({ ...config, baseURL: BASE_URL, headers });
 };
+
+export const postReviewBackend = (review: Review, movieId: String) => {
+  const headers = {
+    "Content-type": "application/json",
+    Authorization: "Bearer " + getAuthData().access_token, 
+  };
+
+  const data = JSON.stringify({"text": review.text, "movieId": Number(movieId)});
+
+  return axios({
+    method: "POST",
+    baseURL: BASE_URL,
+    url: "/reviews",
+    data,
+    headers,
+  });
+}
 
 // Add a request interceptor
 axios.interceptors.request.use(function (config) {

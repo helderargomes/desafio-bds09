@@ -34,7 +34,7 @@ const MovieReviews = () => {
       <h1>Tela de detalhes do filme id: 1</h1>
       {hasAnyRoles(["ROLE_MEMBER"]) && (
         <div className="comment-form-card">
-          <ReviewForm />
+          <ReviewForm currentMovieId={movieId} />
         </div>
       )}
 
