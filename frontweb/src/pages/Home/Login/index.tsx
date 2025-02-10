@@ -3,7 +3,7 @@ import "./styles.css";
 import { requestBackendLogin } from "utils/requests";
 import { useContext, useState } from "react";
 import { saveAuthData } from "utils/storage";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { AuthContext } from "AuthContext";
 import { getTokenData } from "utils/auth";
 
@@ -12,8 +12,16 @@ type FormData = {
   password: string;
 };
 
+type LocationSatate = {
+  from: string;
+}
+
 
 const Login = () => {
+
+  const location = useLocation<LocationSatate>();
+  
+  const { from } = location.state || { from : {pathname: "/movies" }}
 
   const { setAuthContextData } = useContext(AuthContext);
 
@@ -36,7 +44,7 @@ const Login = () => {
           authenticated: true,
           tokenData: getTokenData(),
         })
-        history.push("/movies");
+        history.replace(from);
       })
       .catch((error) => {
         setHasError(true);
